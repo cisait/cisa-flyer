@@ -75,79 +75,58 @@
   .preview .cap{font-size:12px;color:var(--muted);margin:0 0 16px;text-align:center}
   #stageWrap{width:100%;display:flex;justify-content:center;overflow:hidden}
   #stageInner{width:816px;transform-origin:top center}
-  #flyer{width:816px;height:1056px;background:#fff;color:#000;position:relative;padding:18px;font-family:'Archivo',sans-serif;box-shadow:0 18px 50px rgba(20,22,26,.18);display:flex;flex-direction:column}
-
-  .coupon.main{flex:1 1 auto;min-height:0;border:3px dashed #000;padding:20px 30px 14px;display:flex;flex-direction:column;justify-content:space-between}
+  #flyer{width:816px;height:1056px;background:#fff;color:#000;position:relative;padding:20px;font-family:'Archivo',sans-serif;box-shadow:0 18px 50px rgba(20,22,26,.18)}
+  .coupon{border:3px dashed #000;height:100%;padding:28px 34px 24px;display:flex;flex-direction:column;justify-content:space-between}
 
   /* logo */
-  .brandrow{text-align:center;padding-bottom:12px;border-bottom:3px solid #000}
-  .brandrow img{height:60px;width:auto;display:inline-block}
+  .brandrow{text-align:center;padding-bottom:20px;border-bottom:3px solid #000}
+  .brandrow img{height:92px;width:auto;display:inline-block}
 
-  .reward{font-family:'Playfair Display';font-style:italic;font-weight:700;font-size:23px;text-align:center;margin:12px 0 6px;display:flex;align-items:center;justify-content:center;gap:14px}
-  .reward .bz{width:27px;flex:none;display:block}
+  .reward{font-family:'Playfair Display';font-style:italic;font-weight:700;font-size:27px;text-align:center;margin:18px 0 8px;display:flex;align-items:center;justify-content:center;gap:16px}
+  .reward .bz{width:31px;flex:none;display:block}
   .reward .bz svg{width:100%;height:auto;display:block}
   .reward .bz.flip{transform:scaleX(-1)}
-  .discount{font-family:'Anton';font-size:98px;line-height:1;text-align:center;letter-spacing:-1px;margin:0;white-space:nowrap}
-  .discount .pct{font-size:66px;vertical-align:4px}
+  .discount{font-family:'Anton';font-size:116px;line-height:1;text-align:center;letter-spacing:-1px;margin:0;white-space:nowrap}
+  .discount .pct{font-size:78px;vertical-align:4px}
 
-  .svc-banner{background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:16px;padding:10px 46px;margin:12px 0 0;clip-path:polygon(3% 0,97% 0,100% 50%,97% 100%,3% 100%,0 50%)}
-  .svc-banner .svc-ic{height:38px;flex:none;display:flex;align-items:center}
-  .svc-banner .svc-ic svg{height:34px;width:auto;fill:#fff}
+  .svc-banner{background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;padding:13px 50px;margin:16px 0 0;clip-path:polygon(3% 0,97% 0,100% 50%,97% 100%,3% 100%,0 50%)}
+  .svc-banner .svc-ic{height:44px;flex:none;display:flex;align-items:center}
+  .svc-banner .svc-ic svg{height:40px;width:auto;fill:#fff}
   .svc-banner .svc-ic.flip{transform:scaleX(-1)}
-  .svc-text{font-family:'Anton';font-size:44px;line-height:1}
-  .svc-sub{background:#000;color:#fff;text-align:center;font-family:'Archivo';font-weight:800;font-size:16px;letter-spacing:.5px;padding:6px 0;width:78%;margin:0 auto}
-  .svc-sub sup{font-size:9px}
+  .svc-text{font-family:'Anton';font-size:50px;line-height:1}
+  .svc-sub{background:#000;color:#fff;text-align:center;font-family:'Archivo';font-weight:800;font-size:18px;letter-spacing:.5px;padding:7px 0;width:78%;margin:0 auto}
+  .svc-sub sup{font-size:10px}
 
-  .includes{border:2px solid #000;border-radius:14px;padding:16px 16px 14px;position:relative;margin-top:18px}
-  .includes-title{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#000;color:#fff;font-family:'Archivo';font-weight:800;font-size:13px;letter-spacing:.5px;padding:5px 16px;white-space:nowrap}
-  .includes-title sup{font-size:8px}
-  .inc-grid{display:flex;align-items:flex-start;margin-top:4px}
-  .inc-item{flex:1 1 0;text-align:center;padding:0 6px;position:relative}
-  .inc-item + .inc-item::before{content:"";position:absolute;left:0;top:5px;bottom:5px;border-left:2px dotted #000}
-  .inc-item .ic{height:36px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
-  .inc-item .ic svg{height:34px;width:auto;max-width:46px;fill:#000}
-  .inc-item .lbl{font-family:'Archivo';font-weight:700;font-size:9.5px;line-height:1.2;letter-spacing:.2px;text-transform:uppercase}
+  .includes{border:2px solid #000;border-radius:16px;padding:20px 18px 18px;position:relative;margin-top:22px}
+  .includes-title{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:#000;color:#fff;font-family:'Archivo';font-weight:800;font-size:15px;letter-spacing:.5px;padding:6px 18px;white-space:nowrap}
+  .includes-title sup{font-size:9px}
+  .inc-grid{display:flex;align-items:flex-start;margin-top:6px}
+  .inc-item{flex:1 1 0;text-align:center;padding:0 8px;position:relative}
+  .inc-item + .inc-item::before{content:"";position:absolute;left:0;top:6px;bottom:6px;border-left:2px dotted #000}
+  .inc-item .ic{height:42px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+  .inc-item .ic svg{height:40px;width:auto;max-width:52px;fill:#000}
+  .inc-item .lbl{font-family:'Archivo';font-weight:700;font-size:10px;line-height:1.2;letter-spacing:.2px;text-transform:uppercase}
 
-  .hero{display:flex;align-items:center;gap:16px;margin-top:14px}
-  .hero .art{width:230px;flex:none;display:flex;align-items:center;justify-content:center;gap:6px}
-  .hero .art svg.main{height:92px;width:auto;max-width:160px;display:block;fill:#000}
-  .hero .art svg.speed{width:22px;height:auto;display:block}
-  .hero .tag{font-family:'Anton';font-size:38px;line-height:.94;letter-spacing:-.5px}
+  .hero{display:flex;align-items:center;gap:18px;margin-top:18px}
+  .hero .art{width:248px;flex:none;display:flex;align-items:center;justify-content:center;gap:6px}
+  .hero .art svg.main{height:112px;width:auto;max-width:180px;display:block;fill:#000}
+  .hero .art svg.speed{width:26px;height:auto;display:block}
+  .hero .tag{font-family:'Anton';font-size:44px;line-height:.94;letter-spacing:-.5px}
 
   .flyer-foot{padding-top:0}
 
-  .infobar{background:#000;color:#fff;display:flex;align-items:stretch;justify-content:space-between;padding:12px 18px;margin-top:14px}
-  .info-col{display:flex;align-items:center;gap:10px;flex:1;justify-content:center}
+  .infobar{background:#000;color:#fff;display:flex;align-items:stretch;justify-content:space-between;padding:15px 20px;margin-top:16px}
+  .info-col{display:flex;align-items:center;gap:11px;flex:1;justify-content:center}
   .info-col .ico{flex:none;display:grid;place-items:center}
-  .info-col .ico svg{height:28px;width:auto;fill:#fff}
-  .info-txt{font-family:'Archivo';font-weight:700;font-size:13.5px;line-height:1.35;text-align:left}
+  .info-col .ico svg{height:31px;width:auto;fill:#fff}
+  .info-txt{font-family:'Archivo';font-weight:700;font-size:15px;line-height:1.35;text-align:left}
   .vsep{width:2px;background:#fff;opacity:.35;margin:2px 0;flex:none}
 
-  .mention{background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;padding:9px 0;margin-top:12px;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%)}
-  .mention svg{height:24px;width:auto;fill:#fff}
-  .mention span{font-family:'Anton';font-size:27px;letter-spacing:.5px}
-  .valid{text-align:center;font-family:'Archivo';font-weight:500;font-size:11px;line-height:1.45;margin-top:7px;padding:0 10px}
+  .mention{background:#000;color:#fff;display:flex;align-items:center;justify-content:center;gap:12px;padding:11px 0;margin-top:14px;clip-path:polygon(4% 0,96% 0,100% 50%,96% 100%,4% 100%,0 50%)}
+  .mention svg{height:26px;width:auto;fill:#fff}
+  .mention span{font-family:'Anton';font-size:30px;letter-spacing:.5px}
+  .valid{text-align:center;font-family:'Archivo';font-weight:500;font-size:12px;line-height:1.5;margin-top:10px;padding:0 10px}
   .valid b{font-weight:800}
-
-  /* cut line between coupons */
-  .cutrow{flex:none;display:flex;align-items:center;gap:8px;margin:6px 2px}
-  .cutrow .cut-ic{width:20px;flex:none;display:block}
-  .cutrow .cut-ic svg{width:100%;height:auto;fill:#000}
-  .cutrow .cutline{flex:1;border-top:2px dashed #000}
-
-  /* bonus coupon */
-  .coupon.bonus{flex:none;height:188px;border:3px dashed #000;padding:14px 24px;display:flex;flex-direction:column;justify-content:center;gap:14px}
-  .bonus-row{display:flex;align-items:center;gap:22px}
-  .bonus-logo{height:56px;width:auto;flex:none}
-  .bonus-offer{flex:1;min-width:0}
-  .bonus-off{font-family:'Anton';font-size:56px;line-height:.86;letter-spacing:-1px}
-  .bonus-off .pct{font-size:37px;vertical-align:4px}
-  .bonus-svc{font-family:'Archivo';font-weight:800;font-size:21px;letter-spacing:.5px;margin-top:3px}
-  .bonus-code{flex:none;border:3px solid #000;border-radius:12px;padding:9px 20px;text-align:center}
-  .bcode-lbl{font-family:'Archivo';font-weight:800;font-size:10.5px;letter-spacing:2px}
-  .bcode{font-family:'Anton';font-size:34px;letter-spacing:1px;line-height:1}
-  .bonus-fine{font-family:'Archivo';font-weight:500;font-size:12px;text-align:center;line-height:1.4}
-  .bonus-fine b{font-weight:800}
 
   .footnote{font-size:11px;color:var(--muted);text-align:center;margin:18px 0 0;line-height:1.5;max-width:560px}
 </style>
@@ -166,6 +145,7 @@
     <div class="field">
       <label for="promo">Promotion</label>
       <select id="promo">
+        <option value="future10">10% Off Any Future Service</option>
         <option value="oc50">50% Off Any Oil Change</option>
         <option value="oc20">$20 Off Oil Change</option>
         <option value="ac50">50% Off A/C Service</option>
@@ -192,9 +172,9 @@
     <div class="field">
       <label for="exp">Offer expires in</label>
       <select id="exp">
-        <option value="3">3 months</option>
+        <option value="3" selected>3 months</option>
         <option value="6">6 months</option>
-        <option value="12" selected>12 months</option>
+        <option value="12">12 months</option>
       </select>
       <div class="pill" id="expPill">Valid through —</div>
     </div>
@@ -234,6 +214,21 @@ function brakeArt(){return withClass(I.disc,'main');}
 
 /* ---------- promo content (service details from jiffylube.com) ---------- */
 const PROMOS = {
+  future10:{
+    discount:'10<span class="pct">%</span> OFF', bannerIcon:'wrench', banner:'ANY FUTURE SERVICE',
+    sub:'USE CODE: FLYER10',
+    title:'SERVICES INCLUDE:',
+    items:[
+      {ic:'oilcan',lbl:'Oil Change'},
+      {ic:'disc',lbl:'Brake Service'},
+      {ic:'snowflake',lbl:'A/C Service'},
+      {ic:'droplet',lbl:'Fluid Exchange'},
+      {ic:'gears',lbl:'Engine Tune-Up'},
+      {ic:'clipboard',lbl:'Multi-Point Inspection'}
+    ],
+    tag:'SEE YOU ON YOUR NEXT VISIT!', art:carArt,
+    note:'*Does not apply to batteries or tires.'
+  },
   oc50:{
     discount:'50<span class="pct">%</span> OFF', bannerIcon:'oilcan', banner:'ANY OIL CHANGE',
     sub:'INCLUDING OUR SIGNATURE SERVICE<sup>&reg;</sup>',
@@ -315,7 +310,7 @@ function render(){
   ).join('');
 
   $('flyer').innerHTML = `
-    <div class="coupon main">
+    <div class="coupon">
       <div class="flyer-top">
         <div class="brandrow"><img src="${LOGO_SRC}" alt="Jiffy Lube"></div>
         <div class="reward"><span class="bz flip">${I.burst}</span><span>Here&rsquo;s a Reward For Your Next Visit!</span><span class="bz">${I.burst}</span></div>
@@ -348,25 +343,8 @@ function render(){
           <div class="info-col"><div class="ico">${I.phone}</div><div class="info-txt">${s.phone}</div></div>
         </div>
         <div class="mention">${I.star}<span>MENTION THIS COUPON</span>${I.star}</div>
-        <div class="valid">Valid through <b>${valid}</b> at Jiffy Lube #${s.store}. Must present coupon at time of service. Not valid with any other offer for the same service.</div>
+        <div class="valid">${p.note ? '<b>'+p.note+'</b> ' : ''}Valid through <b>${valid}</b> at Jiffy Lube #${s.store}. Must present coupon at time of service. Not valid with any other offer for the same service.</div>
       </div>
-    </div>
-
-    <div class="cutrow"><span class="cut-ic">${I.scissors}</span><span class="cutline"></span></div>
-
-    <div class="coupon bonus">
-      <div class="bonus-row">
-        <img class="bonus-logo" src="${LOGO_SRC}" alt="Jiffy Lube">
-        <div class="bonus-offer">
-          <div class="bonus-off">10<span class="pct">%</span> OFF</div>
-          <div class="bonus-svc">ANY FUTURE SERVICE</div>
-        </div>
-        <div class="bonus-code">
-          <div class="bcode-lbl">USE CODE</div>
-          <div class="bcode">FLYER10</div>
-        </div>
-      </div>
-      <div class="bonus-fine"><b>*Does not apply to batteries or tires.</b> Valid through ${valid} at Jiffy Lube #${s.store}. Mention this coupon at time of service.</div>
     </div>`;
 }
 

@@ -484,12 +484,14 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   /* ================= SHEET (8.5x11 @96dpi) ================= */
   #sheet{width:816px;height:1056px;background:#fff;position:relative;display:grid;box-shadow:0 18px 50px rgba(20,22,26,.18)}
   #sheet.mode-full   {grid-template-columns:1fr;      grid-template-rows:1fr}
-  #sheet.mode-half   {grid-template-columns:1fr;      grid-template-rows:1fr 1fr}
+  /* half = LANDSCAPE sheet, two PORTRAIT 5.5x8.5 coupons side by side */
+  #sheet.mode-half   {width:1056px;height:816px;grid-template-columns:1fr 1fr; grid-template-rows:1fr}
   #sheet.mode-quarter{grid-template-columns:1fr 1fr;  grid-template-rows:1fr 1fr}
   .cell{position:relative;overflow:hidden}
   .fit{position:absolute;left:0;top:0;transform-origin:top left}
   .fit.s1{transform:scale(1)}
   .fit.s05{transform:scale(0.5)}
+  .fit.s647{transform:scale(0.647059)}
 
   /* cut guides between cells */
   .cutline{position:absolute;background:none;pointer-events:none}
@@ -499,6 +501,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   /* ================= COUPON: shared ================= */
   .coupon{background:#fff;color:#000;font-family:'Archivo',sans-serif}
   .coupon.portrait{width:816px;height:1056px;padding:19px}
+  .coupon.portrait.h2{height:1261px}
   .coupon.landscape{width:816px;height:528px;padding:15px}
   .card{border:3px dashed #000;height:100%;display:flex;flex-direction:column;justify-content:space-between}
   .coupon.portrait .card{padding:26px 32px 20px}
@@ -601,7 +604,24 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .portrait.q .discount{font-size:100px}
   .portrait.q .discount .pct{font-size:67px}
 
+  /* ---- h2: portrait half-sheet (5.5x8.5) — scale up to fill the taller body ---- */
+  .portrait.h2 .brandrow img{height:104px}
+  .portrait.h2 .reward{font-size:29px;margin:20px 0 8px}
+  .portrait.h2 .reward img{height:33px}
+  .portrait.h2 .discount{font-size:126px}
+  .portrait.h2 .discount .pct{font-size:84px}
+  .portrait.h2 .includes{margin-top:32px;padding:26px 18px 22px}
+  .portrait.h2 .hero{padding:10px 0}
+  .portrait.h2 .hero .art{width:332px}
+  .portrait.h2 .hero .art img.main{height:226px;max-width:292px}
+  .portrait.h2 .hero .art img.speed{height:60px}
+  .portrait.h2 .hero .tag{font-size:60px}
+
   /* ================= LANDSCAPE sizing (half sheet) ================= */
+  /* Chrome drops word gaps in heavy Archivo below ~9px; widen spaces for small text */
+  .landscape .valid,.landscape .inc-item .lbl,.landscape .codebox .lbl,
+  .landscape .codebox .codesm,.landscape .includes-title,.landscape .info-txt,
+  .landscape .svc-sub{word-spacing:.14em}
   .landscape .brandrow{padding-bottom:7px;border-bottom-width:2px}
   .landscape .brandrow img{height:42px;width:auto;display:inline-block}
   .landscape .reward{font-size:16px;margin:7px 0 2px;gap:9px}
@@ -622,7 +642,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .landscape .inc-item + .inc-item::before{border-left-width:1.5px}
   .landscape .inc-item .ic{height:23px;margin-bottom:5px}
   .landscape .inc-item .ic img{height:22px;width:auto;max-width:30px;display:block}
-  .landscape .inc-item .lbl{font-size:7px;line-height:1.15}
+  .landscape .inc-item .lbl{font-size:8px;line-height:1.15}
   .landscape .hero{gap:11px;padding:0}
   .landscape .hero .art{width:150px;gap:5px}
   .landscape .hero .art img.main{height:52px;width:auto;max-width:112px;display:block}
@@ -638,10 +658,10 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .landscape .mention img:not(.ribbon-bg){height:14px;width:auto;display:block}
   .landscape .mention span{font-size:16px;letter-spacing:.4px}
   .landscape .codebox{border-radius:7px;padding:3px 11px;min-width:112px;border-width:2px}
-  .landscape .codebox .lbl{font-size:6.5px;letter-spacing:1.4px}
+  .landscape .codebox .lbl{font-size:7.5px;letter-spacing:1.4px}
   .landscape .codebox .code{font-size:19px;letter-spacing:.6px}
   .landscape .codebox .codesm{font-size:9px;letter-spacing:.2px}
-  .landscape .valid{font-size:7.5px;line-height:1.4;margin-top:5px;padding:0 4px}
+  .landscape .valid{font-size:8.5px;line-height:1.35;margin-top:5px;padding:0 4px}
 
   /* ================= Print ================= */
   @page{ size:8.5in 11in; margin:0; }
@@ -670,9 +690,9 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     <div class="field">
       <label for="layoutSel">Sheet layout</label>
       <select id="layoutSel">
-        <option value="half" selected>2 per sheet — half page (cut once)</option>
-        <option value="quarter">4 per sheet — quarter page (cut twice)</option>
-        <option value="full">1 per sheet — full page</option>
+        <option value="half" selected>2 per sheet — half page 5.5&times;8.5 (cut once)</option>
+        <option value="quarter">4 per sheet — quarter page 4.25&times;5.5 (cut twice)</option>
+        <option value="full">1 per sheet — full page 8.5&times;11</option>
       </select>
       <p class="hint" id="layoutHint">Two identical half-page coupons. Cut across the middle.</p>
     </div>
@@ -881,9 +901,9 @@ function couponLandscape(p,s,valid){
 }
 
 const HINTS = {
-  half:'Two identical half-page coupons. Cut across the middle.',
-  quarter:'Four identical quarter-page coupons. Cut once across, once down.',
-  full:'One full-page coupon per sheet.'
+  half:'Two portrait coupons side by side. Feed paper LANDSCAPE, then cut down the middle.',
+  quarter:'Four portrait coupons. Paper portrait; cut once across, once down.',
+  full:'One full-page portrait coupon. Paper portrait.'
 };
 
 function render(){
@@ -900,9 +920,9 @@ function render(){
   if(mode === 'full'){
     cells = `<div class="cell"><div class="fit s1">${couponPortrait(p,s,valid)}</div></div>`;
   } else if(mode === 'half'){
-    const c = `<div class="cell"><div class="fit s1">${couponLandscape(p,s,valid)}</div></div>`;
+    const c = `<div class="cell"><div class="fit s647">${couponPortrait(p,s,valid,'h2')}</div></div>`;
     cells = c + c;
-    guides = `<div class="cutline h" style="top:50%"></div>`;
+    guides = `<div class="cutline v" style="left:50%"></div>`;
   } else {
     const c = `<div class="cell"><div class="fit s05">${couponPortrait(p,s,valid,'q')}</div></div>`;
     cells = c + c + c + c;
@@ -923,16 +943,28 @@ function render(){
   });
 })();
 
-['promo','store','exp','layoutSel'].forEach(id => $(id).addEventListener('change', render));
+['promo','store','exp','layoutSel'].forEach(id => $(id).addEventListener('change', ()=>{ render(); fitPreview(); applyPageSize(sheetSize().land); }));
 ['hWeek','hSat','hSun'].forEach(id => $(id).addEventListener('input', render));
 
+function sheetSize(){
+  const land = $('layoutSel').value === 'half';
+  return {w: land?1056:816, h: land?816:1056, land};
+}
 function fitPreview(){
   const wrap=$('stageWrap'), inner=$('stageInner');
-  const scale=Math.min(1, wrap.clientWidth/816);
+  const {w,h}=sheetSize();
+  const scale=Math.min(1, wrap.clientWidth/w);
+  inner.style.width = w+'px';
   inner.style.transform=`scale(${scale})`;
-  wrap.style.height=(1056*scale)+'px';
+  wrap.style.height=(h*scale)+'px';
 }
 window.addEventListener('resize', fitPreview);
+
+function applyPageSize(land){
+  let el=document.getElementById('pageRule');
+  if(!el){ el=document.createElement('style'); el.id='pageRule'; document.head.appendChild(el); }
+  el.textContent = `@page{size:${land?'11in 8.5in':'8.5in 11in'};margin:0}`;
+}
 
 async function sheetImagesReady(){
   const imgs=Array.from($('sheet').querySelectorAll('img'));
@@ -948,17 +980,21 @@ $('download').addEventListener('click', async ()=>{
   const prevT=inner.style.transform, prevH=wrap.style.height;
   btn.disabled=true; label.textContent='Generating…';
   try{
-    inner.style.transform='none'; wrap.style.height='1056px';
+    const land = $('layoutSel').value === 'half';
+    const sw = land ? 1056 : 816, sh = land ? 816 : 1056;
+    inner.style.transform='none'; wrap.style.height = sh + 'px';
     await sheetImagesReady();
     await new Promise(r=>setTimeout(r,150));
 
     const canvas = await html2canvas($('sheet'), {
       scale:3, useCORS:true, backgroundColor:'#ffffff', imageTimeout:0, logging:false,
-      width:816, height:1056, windowWidth:816, windowHeight:1056
+      width:sw, height:sh, windowWidth:sw, windowHeight:sh
     });
     const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({unit:'in', format:'letter', orientation:'portrait', compress:true});
-    pdf.addImage(canvas.toDataURL('image/jpeg',0.95), 'JPEG', 0, 0, 8.5, 11, undefined, 'FAST');
+    const pdf = new jsPDF({unit:'in', format:'letter',
+                           orientation: land ? 'landscape' : 'portrait', compress:true});
+    pdf.addImage(canvas.toDataURL('image/jpeg',0.95), 'JPEG', 0, 0,
+                 land ? 11 : 8.5, land ? 8.5 : 11, undefined, 'FAST');
 
     const s=STORES[$('store').value], p=PROMOS[$('promo').value];
     const codeTag = p.standardCode ? 'STD50' : p.code;
@@ -976,7 +1012,9 @@ $('download').addEventListener('click', async ()=>{
 $('printBtn').addEventListener('click', async ()=>{
   const inner=$('stageInner'), wrap=$('stageWrap');
   const prevT=inner.style.transform, prevH=wrap.style.height;
-  inner.style.transform='none'; wrap.style.height='1056px';
+  const {h,land}=sheetSize();
+  applyPageSize(land);
+  inner.style.transform='none'; wrap.style.height=h+'px';
   await sheetImagesReady();
   window.print();
   inner.style.transform=prevT; wrap.style.height=prevH; fitPreview();
@@ -984,6 +1022,7 @@ $('printBtn').addEventListener('click', async ()=>{
 
 render();
 fitPreview();
+applyPageSize(sheetSize().land);
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>{ render(); fitPreview(); });
 </script>
 </body>

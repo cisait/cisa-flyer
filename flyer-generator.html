@@ -617,6 +617,29 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   .portrait.h2 .hero .art img.speed{height:60px}
   .portrait.h2 .hero .tag{font-size:60px}
 
+  /* ---- second offer panel (brakes: $25 pad install) ---- */
+  .offer2{flex:1;display:flex;align-items:center;border:3px solid #000;border-radius:14px}
+  .offer2 .o2-or{flex:none;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Anton';letter-spacing:.5px}
+  .offer2 .o2-amt{font-family:'Anton';line-height:1;letter-spacing:-.5px;white-space:nowrap}
+  .offer2 .o2-svc{font-weight:800;line-height:1.1;letter-spacing:.4px}
+  .portrait .offer2{gap:16px;padding:14px 18px}
+  .portrait .offer2 .o2-or{width:62px;height:62px;font-size:25px}
+  .portrait .offer2 .o2-amt{font-size:56px}
+  .portrait .offer2 .o2-svc{font-size:21px;margin-top:4px}
+  .portrait.q .offer2 .o2-svc{font-size:24px}
+  .portrait.h2 .offer2{padding:18px 20px;gap:18px}
+  .portrait.h2 .offer2 .o2-or{width:70px;height:70px;font-size:28px}
+  .portrait.h2 .offer2 .o2-amt{font-size:64px}
+  .portrait.h2 .offer2 .o2-svc{font-size:24px}
+
+  /* ---- dual code box (two offers, two codes) ---- */
+  .codebox .dcode{font-family:'Anton';line-height:1.08;white-space:nowrap}
+  .codebox .dcode .damt{font-family:'Archivo';font-weight:800;margin-right:6px;vertical-align:2px}
+  .portrait .codebox .dcode{font-size:23px}
+  .portrait .codebox .dcode .damt{font-size:12px}
+  .portrait.q .codebox .dcode{font-size:25px}
+  .portrait.q .codebox .dcode .damt{font-size:15px}
+
   /* ================= LANDSCAPE sizing (half sheet) ================= */
   /* Chrome drops word gaps in heavy Archivo below ~9px; widen spaces for small text */
   .landscape .valid,.landscape .inc-item .lbl,.landscape .codebox .lbl,
@@ -704,7 +727,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
         <option value="oc50">50% Off Any Oil Change</option>
         <option value="oc20">$20 Off Oil Change</option>
         <option value="ac50">50% Off A/C Service</option>
-        <option value="brakes50">$50 Off Brake Service</option>
+        <option value="brakes50">$50 Off Brake Job / $25 Off Pad Install</option>
       </select>
       <div class="pillrow"><span class="pill" id="codePill">Code —</span></div>
     </div>
@@ -819,14 +842,15 @@ const PROMOS = {
     tag:'STAY COOL ALL SEASON LONG!', art:snowArt
   },
   brakes50:{
-    code:'BRAKE50',
-    discount:'$50 OFF', bannerIcon:'disc', banner:'BRAKE SERVICE',
-    sub:'INSPECTION, PADS, ROTORS &amp; FLUID',
-    title:'BRAKE SERVICE INCLUDES:',
+    code:'BRAKE50', code2:'BRAKE25', fileTag:'BRAKE50-BRAKE25',
+    discount:'$50 OFF', bannerIcon:'disc', banner:'COMPLETE BRAKE JOB',
+    sub:'PADS &amp; ROTORS',
+    title:'COMPLETE BRAKE JOB INCLUDES:',
     items:[
-      {ic:'search',lbl:'Brake Inspection'},{ic:'disc',lbl:'Pad &amp; Shoe Replacement'},{ic:'gears',lbl:'Rotor &amp; Drum Machining'},
-      {ic:'droplet',lbl:'Brake Fluid Exchange'},{ic:'wrench',lbl:'Restore To Mfr Spec'}
+      {ic:'search',lbl:'Brake Inspection'},{ic:'disc',lbl:'New Brake Pads'},
+      {ic:'gears',lbl:'Rotors'},{ic:'wrench',lbl:'Restore To Mfr Spec'}
     ],
+    second:{amt:'$25 OFF', svc:'BRAKE PAD INSTALL'},
     tag:'STOP WITH CONFIDENCE!', art:brakeArt
   }
 };
@@ -839,14 +863,25 @@ function computeValid(months){
   return `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}/${d.getFullYear()}`;
 }
 
+function heroRight(p){
+  if(!p.second) return `<div class="tag">${p.tag}</div>`;
+  return `<div class="offer2"><div class="o2-or">OR</div>
+            <div><div class="o2-amt">${p.second.amt}</div><div class="o2-svc">${p.second.svc}</div></div>
+          </div>`;
+}
 function codeBoxHTML(p){
+  if(p.code2) return `<div class="codebox"><div class="lbl">USE CODE</div>
+      <div class="dcode"><span class="damt">$50</span>${p.code}</div>
+      <div class="dcode"><span class="damt">$25</span>${p.code2}</div></div>`;
   return p.standardCode
     ? `<div class="codebox"><div class="lbl">${p.codeLabel}</div><div class="codesm">${p.codeText}</div></div>`
     : `<div class="codebox"><div class="lbl">USE CODE</div><div class="code">${p.code}</div></div>`;
 }
 function validHTML(p,s,valid){
   const lead = p.note ? '<b>'+p.note+'</b> ' : '';
-  const codeSentence = p.standardCode
+  const codeSentence = p.code2
+    ? `$50 off complete brake job (pads &amp; rotors) with code <b>${p.code}</b>, or $25 off brake pad install with code <b>${p.code2}</b>. Mention code at time of service.`
+    : p.standardCode
     ? `Apply your store&rsquo;s standard 50% off code.`
     : `Mention code <b>${p.code}</b> at time of service.`;
   return `${lead}Valid through <b>${valid}</b> at Jiffy Lube #${s.store}. ${codeSentence} Not valid with any other offer for the same service.`;
@@ -886,7 +921,7 @@ function couponPortrait(p,s,valid,extra){
   const b = commonBlocks(p,s,valid);
   return `<div class="coupon portrait ${extra||''}"><div class="card">
       <div>${b.brand}${b.reward}${b.discount}${b.banner}${b.includes}</div>
-      <div class="hero"><div class="art">${p.art()}</div><div class="tag">${p.tag}</div></div>
+      <div class="hero"><div class="art">${p.art()}</div>${heroRight(p)}</div>
       <div>${b.info}${b.action}${b.valid}</div>
     </div></div>`;
 }
@@ -895,7 +930,7 @@ function couponLandscape(p,s,valid){
   return `<div class="coupon landscape"><div class="card">
       <div>${b.brand}${b.reward}${b.discount}${b.banner}</div>
       <div>${b.includes}</div>
-      <div class="hero"><div class="art">${p.art()}</div><div class="tag">${p.tag}</div></div>
+      <div class="hero"><div class="art">${p.art()}</div>${heroRight(p)}</div>
       <div>${b.info}${b.action}${b.valid}</div>
     </div></div>`;
 }
@@ -913,7 +948,7 @@ function render(){
   const valid = computeValid($('exp').value);
 
   $('expPill').textContent  = 'Valid through ' + valid;
-  $('codePill').textContent = p.standardCode ? "Store's own 50% code" : 'Code ' + p.code;
+  $('codePill').textContent = p.code2 ? `Codes ${p.code} / ${p.code2}` : p.standardCode ? "Store's own 50% code" : 'Code ' + p.code;
   $('layoutHint').textContent = HINTS[mode];
 
   let cells = '', guides = '';
@@ -997,7 +1032,7 @@ $('download').addEventListener('click', async ()=>{
                  land ? 11 : 8.5, land ? 8.5 : 11, undefined, 'FAST');
 
     const s=STORES[$('store').value], p=PROMOS[$('promo').value];
-    const codeTag = p.standardCode ? 'STD50' : p.code;
+    const codeTag = p.fileTag || (p.standardCode ? 'STD50' : p.code);
     const perSheet = {half:'2up', quarter:'4up', full:'1up'}[$('layoutSel').value];
     pdf.save(`jiffy-lube-${codeTag}-store-${s.store}-${perSheet}.pdf`);
   }catch(err){
